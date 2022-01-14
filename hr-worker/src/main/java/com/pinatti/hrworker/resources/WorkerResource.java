@@ -21,20 +21,20 @@ import com.pinatti.hrworker.repositories.WorkerRepository;
 @RestController
 @RequestMapping(value = "/workers")
 public class WorkerResource {
-
 	private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
+
 	
 	@Value("${test.config}")
 	private String testConfig;
-
+	
 	@Autowired
 	private Environment env;
-
+	
 	@Autowired
 	private WorkerRepository repository;
-	
+
 	@GetMapping(value = "/configs")
-	public  ResponseEntity<Void> getConfigs() {
+	public ResponseEntity<Void> getConfigs() {
 		logger.info("CONFIG = " + testConfig);
 		return ResponseEntity.noContent().build();
 	}
@@ -48,16 +48,13 @@ public class WorkerResource {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findById(@PathVariable Long id) {
 
-		
 		try {
 			Thread.sleep(3000l);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		logger.info("PORT = " + env.getProperty("local.server.port"));
-
 		Worker obj = repository.findById(id).get();
 		return ResponseEntity.ok(obj);
 	}
