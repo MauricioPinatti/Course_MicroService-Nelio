@@ -1,5 +1,5 @@
 FROM openjdk:11
 VOLUME /tmp
-EXPOSE 8761
-ADD ./target/hr-eureka-server-0.0.1-SNAPSHOT.jar hr-eureka-server.jar
-ENTRYPOINT ["java","-jar","/hr-eureka-server.jar"]
+EXPOSE 8888
+ADD ./target/hr-config-server-0.0.1-SNAPSHOT.jar hr-config-server.jar
+ENTRYPOINT ["java","-jar","/hr-config-server.jar"]
